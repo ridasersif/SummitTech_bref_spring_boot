@@ -1,4 +1,4 @@
-package org.supplychain.supplychain.controller.modelSupplier;
+package org.supplychain.supplychain.controller.approvisionnement;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
