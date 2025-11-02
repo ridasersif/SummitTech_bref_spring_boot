@@ -7,6 +7,7 @@ import org.supplychain.supplychain.dto.modelDelivery.CustomerDto;
 //import org.supplychain.supplychain.dto.delivery.DeliveryDTO;
 //import org.supplychain.supplychain.dto.product.ProductOrderDTO;
 import org.supplychain.supplychain.enums.OrderStatus;
+import org.supplychain.supplychain.model.Product;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -19,9 +20,9 @@ public class OrderDTO {
 
     private Long id;
 
-    private CustomerDto customer;
+    private Long customerId;
 
-//    private List<ProductOrderDTO> productOrders = new ArrayList<>();
+    private List<Product> productOrders = new ArrayList<>();
 
     private BigDecimal totalAmount;
 

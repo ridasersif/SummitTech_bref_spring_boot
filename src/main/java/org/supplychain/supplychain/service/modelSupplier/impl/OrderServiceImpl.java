@@ -1,5 +1,6 @@
 package org.supplychain.supplychain.service.modelSupplier.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.supplychain.supplychain.dto.order.OrderDTO;
@@ -12,6 +13,7 @@ import org.supplychain.supplychain.service.modelSupplier.OrderServiec;
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderServiec {
 
@@ -24,10 +26,15 @@ public class OrderServiceImpl implements OrderServiec {
 
    @Override
     public OrderDTO createOrder(OrderDTO dto) {
+
+       if (dto.getCustomerId() == null) {
+           throw new IllegalArgumentException("Customer must not be null");
+       }
+
         Order order = orderMapper.toEntity(dto);
 
         // relate customer
-        order.setCustomer(customerRepository.findById(dto.getCustomer().getId())
+        order.setCustomer(customerRepository.findById(dto.getCustomerId())
                 .orElseThrow(() -> new RuntimeException("Client introuvable")));
 
         // relate ProductOrders
