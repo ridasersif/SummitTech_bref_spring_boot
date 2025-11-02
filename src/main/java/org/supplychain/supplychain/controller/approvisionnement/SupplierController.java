@@ -2,6 +2,7 @@ package org.supplychain.supplychain.controller.approvisionnement;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.supplychain.supplychain.constants.supplierConstants.SupplierApiConstants;
 import org.supplychain.supplychain.dto.supplier.SupplierDTO;
@@ -47,9 +48,12 @@ public class SupplierController {
 
 
     @GetMapping
-    public ResponseEntity<List<SupplierDTO>> getAllSuppliers() {
-        return ResponseEntity.ok(supplierService.getAllSuppliers());
+    public ResponseEntity<Page<SupplierDTO>> getAllSuppliers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+        return ResponseEntity.ok(supplierService.getAllSuppliers(page, size));
     }
+
 
     @GetMapping("/search")
     public ResponseEntity<List<SupplierDTO>> searchSupplier(@RequestParam String name) {
