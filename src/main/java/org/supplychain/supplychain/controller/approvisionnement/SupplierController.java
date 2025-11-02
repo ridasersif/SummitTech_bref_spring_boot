@@ -4,7 +4,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.supplychain.supplychain.constants.supplierConstants.SupplierApiConstants;
+import org.supplychain.supplychain.constants.supplierConstants.ApiConstants;
+
 import org.supplychain.supplychain.dto.supplier.SupplierDTO;
 import org.supplychain.supplychain.service.modelSupplier.SupplierService;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 //@RequestMapping("/api/suppliers")
-@RequestMapping(SupplierApiConstants.API+SupplierApiConstants.SUPPLIER_ENDPOINT)
+@RequestMapping(ApiConstants.API+ApiConstants.SUPPLIER_ENDPOINT)
 @RequiredArgsConstructor
 public class SupplierController {
 

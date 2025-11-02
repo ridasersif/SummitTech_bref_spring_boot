@@ -3,12 +3,13 @@ package org.supplychain.supplychain.controller.approvisionnement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.supplychain.supplychain.constants.supplierConstants.ApiConstants;
 import org.supplychain.supplychain.dto.order.OrderDTO;
 import org.supplychain.supplychain.service.modelSupplier.OrderServiec;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping(ApiConstants.API+ ApiConstants.ORDER_ENDPOINT)
 @RequiredArgsConstructor
 public class OrderController {
 
