@@ -2,6 +2,7 @@ package org.supplychain.supplychain.controller.approvisionnement;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.supplychain.supplychain.constants.supplierConstants.SupplierApiConstants;
 import org.supplychain.supplychain.dto.supplier.SupplierDTO;
 import org.supplychain.supplychain.service.modelSupplier.SupplierService;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/suppliers")
+//@RequestMapping("/api/suppliers")
+@RequestMapping(SupplierApiConstants.API+SupplierApiConstants.SUPPLIER_ENDPOINT)
 @RequiredArgsConstructor
 public class SupplierController {
 

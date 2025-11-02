@@ -8,6 +8,10 @@ import lombok.Data;
 @Data
 public class CustomerDto {
 
+
+    // add id to use for update and read --> api
+    private Long id;
+
     @NotBlank(message = "Le nom ne peut pas être vide")
     @Size(min = 2, max = 100, message = "Le nom doit contenir entre 2 et 100 caractères")
     private String name;
