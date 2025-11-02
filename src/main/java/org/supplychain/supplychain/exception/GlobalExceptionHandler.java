@@ -45,6 +45,7 @@ public class GlobalExceptionHandler {
                 request.getRequestURI()
         );
 
+
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 
