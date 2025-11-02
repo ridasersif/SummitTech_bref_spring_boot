@@ -18,6 +18,8 @@ public class OrderServiceImpl implements OrderServiec {
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;
 //    private final ProductOrderRepository productOrderRepository;
+
+    //    private final ProductOrderRepository productOrderRepository;
     private final OrderMapper orderMapper;
 
    @Override
@@ -29,7 +31,7 @@ public class OrderServiceImpl implements OrderServiec {
                 .orElseThrow(() -> new RuntimeException("Client introuvable")));
 
         // relate ProductOrders
-       order.setProductOrders(productOrderRepository.findAllById(dto.getProductOrderIds()));
+//       order.setProductOrders(productOrderRepository.findAllById(dto.getProductOrderIds()));
 
        Order saved = orderRepository.save(order);
 

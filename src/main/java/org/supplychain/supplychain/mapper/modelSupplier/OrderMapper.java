@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 public interface OrderMapper {
 
     @Mapping(target = "id", source = "idOrder")
-    @Mapping(target = "productOrderIds",
-            expression = "java(order.getProductOrders() != null ? order.getProductOrders().stream().map(po -> po.getIdProductOrder()).collect(Collectors.toList()) : new ArrayList<>())")
+//    @Mapping(target = "productOrderIds",
+//            expression = "java(order.getProductOrders() != null ? order.getProductOrders().stream().map(po -> po.getIdProductOrder()).collect(Collectors.toList()) : new ArrayList<>())")
     OrderDTO toDto(Order order);
 
     @InheritInverseConfiguration

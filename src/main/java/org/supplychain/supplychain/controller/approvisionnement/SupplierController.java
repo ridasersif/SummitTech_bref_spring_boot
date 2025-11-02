@@ -1,5 +1,6 @@
 package org.supplychain.supplychain.controller.approvisionnement;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.supplychain.supplychain.constants.supplierConstants.SupplierApiConstants;
@@ -18,12 +19,12 @@ public class SupplierController {
     private final SupplierService supplierService;
 
     @PostMapping
-    public ResponseEntity<SupplierDTO> createSupplier(@RequestBody SupplierDTO dto) {
+    public ResponseEntity<SupplierDTO> createSupplier(@Valid @RequestBody SupplierDTO dto) {
         return ResponseEntity.ok(supplierService.createSupplier(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SupplierDTO> updateSupplier(@PathVariable Long id, @RequestBody SupplierDTO dto) {
+    public ResponseEntity<SupplierDTO> updateSupplier(@PathVariable Long id, @Valid @RequestBody SupplierDTO dto) {
         return ResponseEntity.ok(supplierService.updateSupplier(id, dto));
     }
 
