@@ -1,5 +1,7 @@
 package org.supplychain.supplychain.controller.approvisionnement;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +24,13 @@ import java.util.List;
 @RequestMapping("/api/raw-materials")
 @RequiredArgsConstructor
 @Slf4j
+@Tag(name="Raw Materials Api", description = "APIs for managing raw-materials")
 public class RawMaterialController {
 
     private final RawMaterialService rawMaterialService;
 
     @PostMapping
+    @Operation(summary = "create raw material")
     public ResponseEntity<RawMaterialResponseDTO> createRawMaterial(
             @Valid @RequestBody RawMaterialRequestDTO requestDTO) {
         log.info("REST request to create raw material: {}", requestDTO.getName());
