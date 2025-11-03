@@ -9,6 +9,8 @@ import java.util.stream.Collectors; // Keep this import
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface SupplierMapper {
 
+
+    @Mapping(target = "id", source = "idSupplier") // to display id in get methode for test
     @Mapping(target = "materialIds",
             expression = "java(supplier.getMaterials() != null ? supplier.getMaterials().stream().map(m -> m.getIdMaterial()).collect(java.util.stream.Collectors.toList()) : new java.util.ArrayList<>())")
     SupplierDTO toDTO(Supplier supplier);

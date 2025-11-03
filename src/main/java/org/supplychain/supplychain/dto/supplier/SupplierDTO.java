@@ -14,6 +14,9 @@ import java.util.List;
 @Data
 public class SupplierDTO {
 
+    // we add id becaseu we will need it in testing and checking apis
+    private Long id;
+
     @NotBlank(message = "Le nom du fournisseur est obligatoire")
     @Size(min = 2, max = 100, message = "Le nom doit avoir entre 2 et 100 caractères")
     private String name;

@@ -1,6 +1,9 @@
 package org.supplychain.supplychain.service.modelSupplier.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.supplychain.supplychain.dto.supplier.SupplierDTO;
 import org.supplychain.supplychain.mapper.modelSupplier.SupplierMapper;
@@ -73,13 +76,19 @@ public class SupplierServiceImpl implements SupplierService {
 
 
 
-    @Override
-    public List<SupplierDTO> getAllSuppliers() {
-        return supplierRepository.findAll()
-                .stream()
-                .map(supplierMapper::toDTO)
-                .collect(Collectors.toList());
-    }
+//    @Override
+//    public List<SupplierDTO> getAllSuppliers() {
+//        return supplierRepository.findAll()
+//                .stream()
+//                .map(supplierMapper::toDTO)
+//                .collect(Collectors.toList());
+//    }
+@Override
+public Page<SupplierDTO> getAllSuppliers(int page, int size) {
+    Pageable pageable = PageRequest.of(page, size);
+    Page<Supplier> supplierPage = supplierRepository.findAll(pageable);
+    return supplierPage.map(supplierMapper::toDTO); // تحويل لكل Supplier إلى SupplierDTO
+}
 
     @Override
     public List<SupplierDTO> searchSupplierByName(String name) {
