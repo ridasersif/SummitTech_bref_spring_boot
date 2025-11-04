@@ -120,20 +120,20 @@ public class ProductServiceImpl implements ProductService {
         // Vérifier si le produit est dans un Order EN_PREPARATION
         Long ordersInPreparation = productRepository.countOrdersByProductIdAndStatus(
                 id,
-                OrderStatus.EN_PREPARATION
+                OrderStatus.EN_PREPARATION /// il faut le supprimer si order en livrer
         );
 
         if (ordersInPreparation > 0) {
             throw new ResourceInUseException(
                     "Impossible de supprimer le produit. Il est associé à " + ordersInPreparation +
-                            " commande(s) en préparation. Veuillez d'abord finaliser ou annuler ces commandes."
+                            " commande en préparation. Veuillez d'abord finaliser ou annuler ces commandes."
             );
         }
 
         // Vérifier si le produit est dans un ProductionOrder EN_PRODUCTION
         Long productionOrdersInProgress = productRepository.countProductionOrdersByProductIdAndStatus(
                 id,
-                ProductionOrderStatus.EN_PRODUCTION
+                ProductionOrderStatus.EN_PRODUCTION /// il faut le suppimer s'il prd order est en attente ou en bloq
         );
 
         if (productionOrdersInProgress > 0) {

@@ -91,7 +91,7 @@ public class ProductionOrderServiceImpl implements ProductionOrderService {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Ordre de production non trouvé avec l'ID : " + id));
 
-        if (order.getStatus() != ProductionOrderStatus.EN_ATTENTE) {
+        if (order.getStatus() != ProductionOrderStatus.EN_ATTENTE ) {
             throw new ResourceInUseException(
                     "Impossible d'annuler l'ordre. Seuls les ordres avec le statut EN_ATTENTE peuvent être annulés. " +
                             "Statut actuel : " + order.getStatus()

@@ -1,6 +1,10 @@
 package org.supplychain.supplychain.controller.Production;
 
-
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +22,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
+@Tag(name = "Produits", description = "API de gestion des produits")
 public class ProductController {
 
     private final ProductService productService;
 
     @PostMapping
+    @Operation(summary = "Créer un produit", description = "Crée un nouveau produit dans le système")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Produit créé avec succès"),
+            @ApiResponse(responseCode = "400", description = "Données invalides")
+    })
     public ResponseEntity<SuccessResponse<ProductDTO>> createProduct(
             @Valid @RequestBody ProductDTO productDTO,
             HttpServletRequest request) {
@@ -38,8 +48,13 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Mettre à jour un produit", description = "Met à jour un produit existant")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Produit mis à jour avec succès"),
+            @ApiResponse(responseCode = "404", description = "Produit non trouvé")
+    })
     public ResponseEntity<SuccessResponse<ProductDTO>> updateProduct(
-            @PathVariable Long id,
+            @Parameter(description = "ID du produit") @PathVariable Long id,
             @Valid @RequestBody ProductDTO productDTO,
             HttpServletRequest request) {
 
@@ -54,8 +69,13 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Supprimer un produit", description = "Supprime un produit du système")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Produit supprimé avec succès"),
+            @ApiResponse(responseCode = "404", description = "Produit non trouvé")
+    })
     public ResponseEntity<SuccessResponse<Void>> deleteProduct(
-            @PathVariable Long id,
+            @Parameter(description = "ID du produit") @PathVariable Long id,
             HttpServletRequest request) {
 
         productService.deleteProduct(id);
@@ -69,8 +89,13 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Récupérer un produit", description = "Récupère un produit par son ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Produit récupéré avec succès"),
+            @ApiResponse(responseCode = "404", description = "Produit non trouvé")
+    })
     public ResponseEntity<SuccessResponse<ProductDTO>> getProductById(
-            @PathVariable Long id,
+            @Parameter(description = "ID du produit") @PathVariable Long id,
             HttpServletRequest request) {
 
         ProductDTO product = productService.getProductById(id);
@@ -84,11 +109,15 @@ public class ProductController {
     }
 
     @GetMapping
+    @Operation(summary = "Liste des produits", description = "Récupère tous les produits avec pagination")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Liste récupérée avec succès")
+    })
     public ResponseEntity<SuccessResponse<Page<ProductDTO>>> getAllProducts(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "name") String sortBy,
-            @RequestParam(defaultValue = "asc") String sortDirection,
+            @Parameter(description = "Numéro de page") @RequestParam(defaultValue = "0") int page,
+            @Parameter(description = "Taille de la page") @RequestParam(defaultValue = "10") int size,
+            @Parameter(description = "Champ de tri") @RequestParam(defaultValue = "name") String sortBy,
+            @Parameter(description = "Direction du tri") @RequestParam(defaultValue = "asc") String sortDirection,
             HttpServletRequest request) {
 
         Sort sort = sortDirection.equalsIgnoreCase("desc")
