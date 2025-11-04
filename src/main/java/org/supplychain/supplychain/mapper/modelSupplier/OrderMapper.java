@@ -2,13 +2,14 @@ package org.supplychain.supplychain.mapper.modelSupplier;
 
 import org.mapstruct.*;
 import org.supplychain.supplychain.dto.order.OrderDTO;
+import org.supplychain.supplychain.mapper.modelDelivery.ProductOrderMapper;
 import org.supplychain.supplychain.model.Order;
 
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring",uses = { ProductOrderMapper.class }, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface OrderMapper {
 
     @Mapping(target = "id", source = "idOrder")

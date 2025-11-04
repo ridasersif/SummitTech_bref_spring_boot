@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.supplychain.supplychain.enums.OrderStatus;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,14 +27,11 @@ public class Order extends BaseEntity {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductOrder> productOrders = new ArrayList<>();
 
-
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal totalAmount;
-
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -43,8 +39,5 @@ public class Order extends BaseEntity {
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Delivery delivery;
-
-
-
 
 }

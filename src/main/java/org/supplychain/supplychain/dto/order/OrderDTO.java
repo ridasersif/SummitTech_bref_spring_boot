@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.supplychain.supplychain.dto.modelDelivery.CustomerDto;
 //import org.supplychain.supplychain.dto.delivery.DeliveryDTO;
 //import org.supplychain.supplychain.dto.product.ProductOrderDTO;
+import org.supplychain.supplychain.dto.modelDelivery.DeliveryDto;
+import org.supplychain.supplychain.dto.modelDelivery.ProductOrderDto;
 import org.supplychain.supplychain.enums.OrderStatus;
 import org.supplychain.supplychain.model.Product;
 
@@ -22,12 +24,13 @@ public class OrderDTO {
 
     private Long customerId;
 
-    private List<Product> productOrders = new ArrayList<>();
+    private List<ProductOrderDto> productOrders = new ArrayList<>();
 
     private BigDecimal totalAmount;
 
     private OrderStatus status;
 
-//    private DeliveryDTO delivery;
+   private DeliveryDto delivery;
 
 }
+
