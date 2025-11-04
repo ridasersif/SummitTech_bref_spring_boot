@@ -35,7 +35,7 @@ public class RawMaterialRequestDTO {
 
     @NotBlank(message = "Unit is required")
     @Size(min = 1, max = 50, message = "Unit must be between 1 and 50 characters")
-    private String unit;
+        private String unit;
 
     private LocalDate lastRestockDate;
 

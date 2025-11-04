@@ -10,7 +10,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update  # Changé de "create" à "update"
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
@@ -19,6 +19,7 @@ spring:
     open-in-view: false
 
   liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
     enabled: false
 
   main:
@@ -31,6 +32,3 @@ logging:
   level:
     root: INFO
     org.supplychain: DEBUG
-    org.springdoc: DEBUG
-
-
