@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 @Data
 public class SupplyOrderDTO {
-
+    private String id;
     private String orderNumber;
     private Long supplierId;
     private List<SupplyOrderLine> orderLines;
