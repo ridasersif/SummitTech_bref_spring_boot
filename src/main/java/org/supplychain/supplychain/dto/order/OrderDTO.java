@@ -23,7 +23,7 @@ public class OrderDTO {
 
     private List<Product> productOrders = new ArrayList<>();
 
-    private BigDecimal totalAmount;
+//    private BigDecimal totalAmount;
 
     private OrderStatus status;
 

@@ -33,8 +33,6 @@ public class Order extends BaseEntity {
     private List<ProductOrder> productOrders = new ArrayList<>();
 
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal totalAmount;
 
 
     @Enumerated(EnumType.STRING)

@@ -31,7 +31,7 @@ public class SupplyOrderServiceImpl implements SupplierOrderService {
         SupplyOrder order = new SupplyOrder();
 
         order.setOrderNumber(dto.getOrderNumber());
-        order.setTotalAmount(dto.getTotalAmount());
+//        order.setTotalAmount(dto.getTotalAmount());
         order.setStatus(dto.getStatus());
 
         // default orderdate is current time
