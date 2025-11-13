@@ -39,7 +39,7 @@ public class RawMaterialServiceImpl implements RawMaterialService {
         RawMaterial rawMaterial = mapper.toEntity(requestDTO);
 
         if (requestDTO.getSupplierIds() != null && !requestDTO.getSupplierIds().isEmpty()) {
-            List<Supplier> suppliers = supplierRepository.findAllById(requestDTO.getSupplierIds());
+                List<Supplier> suppliers = supplierRepository.findAllById(requestDTO.getSupplierIds());
             if (suppliers.size() != requestDTO.getSupplierIds().size()) {
                 throw new IllegalArgumentException("One or more supplier IDs are invalid");
             }
@@ -51,10 +51,12 @@ public class RawMaterialServiceImpl implements RawMaterialService {
         }
 
         RawMaterial saved = rawMaterialRepository.save(rawMaterial);
+
         log.info("Raw material created with ID: {}", saved.getIdMaterial());
 
         return mapper.toResponseDTO(saved);
     }
+
 
     @Override
     @Transactional

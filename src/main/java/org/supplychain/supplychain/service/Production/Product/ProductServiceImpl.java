@@ -40,7 +40,6 @@ public class ProductServiceImpl implements ProductService {
                     throw new DuplicateResourceException("Un produit avec le nom '" + productDTO.getName() + "' existe déjà");
                 });
 
-
         if (productDTO.getBillOfMaterials() == null || productDTO.getBillOfMaterials().isEmpty()) {
             throw new IllegalArgumentException("Le Bill of Materials (BOM) est obligatoire lors de la création d'un produit");
         }

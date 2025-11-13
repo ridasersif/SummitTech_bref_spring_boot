@@ -45,3 +45,6 @@ public class SupplierDTO {
     @Size(min = 1, message = "Au moins un matériau doit être sélectionné")
     private List<Long> materialIds;
 }
+
+
+

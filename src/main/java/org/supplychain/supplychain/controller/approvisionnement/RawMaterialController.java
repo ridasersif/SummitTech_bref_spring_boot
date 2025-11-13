@@ -26,9 +26,9 @@ import java.util.List;
 @Slf4j
 @Tag(name="Raw Materials Api", description = "APIs for managing raw-materials")
 public class RawMaterialController {
-
     private final RawMaterialService rawMaterialService;
 
+    //creat raw material
     @PostMapping
     @Operation(summary = "create raw material")
     public ResponseEntity<RawMaterialResponseDTO> createRawMaterial(
@@ -37,6 +37,7 @@ public class RawMaterialController {
         RawMaterialResponseDTO response = rawMaterialService.createRawMaterial(requestDTO);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<RawMaterialResponseDTO> updateRawMaterial(

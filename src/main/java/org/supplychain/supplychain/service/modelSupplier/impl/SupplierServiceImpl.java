@@ -7,7 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.supplychain.supplychain.dto.supplier.SupplierDTO;
 import org.supplychain.supplychain.mapper.modelSupplier.SupplierMapper;
+import org.supplychain.supplychain.model.RawMaterial;
 import org.supplychain.supplychain.model.Supplier;
+import org.supplychain.supplychain.repository.approvisionnement.RawMaterialRepository;
 import org.supplychain.supplychain.repository.approvisionnement.SupplierRepository;
 import org.supplychain.supplychain.service.modelSupplier.SupplierService;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,8 @@ public class SupplierServiceImpl implements SupplierService {
 
     private final SupplierRepository supplierRepository;
     private final SupplierMapper supplierMapper;
+    private final RawMaterialRepository rawMaterialRepository;
+
 
     @Override
     public SupplierDTO createSupplier(SupplierDTO dto) {
@@ -30,8 +34,19 @@ public class SupplierServiceImpl implements SupplierService {
             throw new RuntimeException("Email déjà utilisé");
         }
         Supplier supplier = supplierMapper.toEntity(dto);
+
+        if(dto.getMaterialIds()!=null && !dto.getMaterialIds().isEmpty()){
+            List<RawMaterial> rawMaterials = rawMaterialRepository.findAllById(dto.getMaterialIds());
+            if (rawMaterials.size() != dto.getMaterialIds().size()) {
+                throw new IllegalArgumentException("One or more rawMaterial IDs are invalid");
+            }
+            supplier.setMaterials(rawMaterials);
+        }
+
         return supplierMapper.toDTO(supplierRepository.save(supplier));
     }
+
+
 
     @Override
     public SupplierDTO updateSupplier(Long id, SupplierDTO dto) {
