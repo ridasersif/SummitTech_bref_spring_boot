@@ -31,11 +31,10 @@ public class Customer extends BaseEntity {
 
     @Column(nullable = false)
     private String address;
- //test
+
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
-/// /
 
 }
