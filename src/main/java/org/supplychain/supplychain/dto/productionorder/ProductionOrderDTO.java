@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class ProductionOrderDTO {
     private Long idOrder;
 
-    @NotNull(message = "Le numéro d'ordre est obligatoire")
+
     private String orderNumber;
 
     @NotNull(message = "L'ID du produit est obligatoire")

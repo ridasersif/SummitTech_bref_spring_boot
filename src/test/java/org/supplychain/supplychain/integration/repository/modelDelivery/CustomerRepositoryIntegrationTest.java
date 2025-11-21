@@ -12,7 +12,6 @@ import org.supplychain.supplychain.repository.modelDelivery.CustomerRepository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-
 class CustomerRepositoryIntegrationTest {
 
     @Autowired

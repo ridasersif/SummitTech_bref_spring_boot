@@ -32,10 +32,7 @@ public class ProductionOrderServiceImpl implements ProductionOrderService {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Produit non trouvé avec l'ID : " + dto.getProductId()));
 
-        if (productionOrderRepository.existsByOrderNumber(dto.getOrderNumber())) {
-            throw new DuplicateResourceException(
-                    "Un ordre avec le numéro '" + dto.getOrderNumber() + "' existe déjà");
-        }
+
 
         ProductionOrder productionOrder = productionOrderMapper.toEntity(dto);
         productionOrder.setProduct(product);
@@ -54,6 +51,9 @@ public class ProductionOrderServiceImpl implements ProductionOrderService {
         return productionOrderMapper.toDTO(savedOrder);
     }
 
+
+
+
     @Override
     @Transactional
     public ProductionOrderDTO updateProductionOrder(Long id, ProductionOrderDTO dto) {
@@ -61,11 +61,7 @@ public class ProductionOrderServiceImpl implements ProductionOrderService {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Ordre de production non trouvé avec l'ID : " + id));
 
-        if (!existingOrder.getOrderNumber().equals(dto.getOrderNumber()) &&
-                productionOrderRepository.existsByOrderNumber(dto.getOrderNumber())) {
-            throw new DuplicateResourceException(
-                    "Un ordre avec le numéro '" + dto.getOrderNumber() + "' existe déjà");
-        }
+
 
         if (dto.getProductId() != null &&
                 !dto.getProductId().equals(existingOrder.getProduct().getIdProduct())) {

@@ -22,7 +22,7 @@ public class ProductionOrder extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idOrder;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = true, unique = true)
     private String orderNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)

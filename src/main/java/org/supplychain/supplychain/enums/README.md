@@ -1,1 +1,0 @@
-# Enum types (status values)

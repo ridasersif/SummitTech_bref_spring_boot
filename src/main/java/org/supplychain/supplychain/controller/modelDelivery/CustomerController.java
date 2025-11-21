@@ -18,6 +18,9 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/customers")
+
+
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class CustomerController {
 

@@ -41,10 +41,12 @@ class CustomerServiceUnitTest {
     @BeforeEach
     void setup() {
         MockitoAnnotations.openMocks(this);
+
         dto = new CustomerDto();
         dto.setIdCustomer(1L);
         dto.setName("Test User");
         dto.setEmail("test@example.com");
+
 
         entity = new Customer();
         entity.setIdCustomer(1L);
@@ -56,6 +58,7 @@ class CustomerServiceUnitTest {
     @DisplayName("Unit Test - createCustomer success")
     void testCreateCustomerSuccess() {
         when(customerRepository.existsByEmail(dto.getEmail())).thenReturn(false);
+
         when(customerMapper.toEntity(dto)).thenReturn(entity);
         when(customerRepository.save(entity)).thenReturn(entity);
         when(customerMapper.toDto(entity)).thenReturn(dto);
