@@ -1,5 +1,14 @@
 # 📄 Documentation : Sécurité Spring (Spring Security)
 
+<div align="center">
+
+![Spring Security](https://img.shields.io/badge/Spring%20Security-6.0+-green?style=for-the-badge&logo=spring)
+![Java](https://img.shields.io/badge/Java-17+-orange?style=for-the-badge&logo=java)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+
+
+
+</div>
 ## 🔐 Authentication vs Authorization
 
 ### **Authentification**
